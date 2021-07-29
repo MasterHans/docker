@@ -134,4 +134,36 @@ unpause - возобновляет
 си, поверх указанного образа
 
     docker create fedora -it bash
+
+
+
+Команда docker diff говорит сама за себя. Это еще одна очень важная команда, вы-
+водящая изменения в файлах и каталогах в файловой системе контейнера:
+
+    docker diff container
+
+
+создать локально копию образа:
+    
+    docker commit 596cc899d8a4 myname:version1    
+    
+Работа с Dockerfile. Файл лежит в текущей директории
+    
+    docker build -t from_docker_file .    
+
+в файле:
+
+FROM ubuntu:latest
+MAINTAINER masterhans75@hotmail.com
+RUN apt-get update && apt-get install -y
+#Нужно при установке mc выберать регион а это пока не понятно как сделать пакетно
+#RUN apt install mc -y
+RUN apt-get install mysql-server -y
+EXPOSE 3306
+CMD ["/usr/bin/MySQLd_safe"]
                 
+
+Запускаем SQL скрипты внутри контейнера                         
+
+    docker run –d –p 3306:3306 from_docker_file 
+    docker exec –it 5063c4bed669 bash
