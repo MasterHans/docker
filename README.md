@@ -163,7 +163,25 @@ EXPOSE 3306
 CMD ["/usr/bin/MySQLd_safe"]
                 
 
-Запускаем SQL скрипты внутри контейнера                         
+### Запускаем SQL скрипты внутри контейнера                         
 
     docker run –d –p 3306:3306 from_docker_file 
-    docker exec –it 5063c4bed669 bash
+    docker exec -it b21f10e6f393 bash
+    
+    mysql
+    show databases;
+    connect information_schema
+    show tables
+    
+
+### Компоновщик Docker Compose
+
+Приложения, использующие Docker, обычно состоят из нескольких контейнеров,
+т. е. они имеют компоненты (например, приложение, веб-сервер, базу данных),
+развернутые в нескольких контейнерах Docker. Чтобы упростить запуск много-
+контейнерных приложений, в рамках проекта Docker был создан инструмент
+Docker Compose.
+
+
+
+    
