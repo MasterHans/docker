@@ -183,5 +183,47 @@ CMD ["/usr/bin/MySQLd_safe"]
 Docker Compose.
 
 
-
+### Остановить все контейнеры
     
+    docker-compose down
+    
+### Удалить все контейнеры
+
+    docker rm -f $(docker ps -a -q)    
+    
+### Delete all volumes using the following command: 
+
+    docker volume rm $(docker volume ls -q)    
+    
+### Purging All Unused or Dangling Images, Containers, Volumes, and Networks
+
+    docker system prune 
+    
+### Запуск docker-compose
+
+1) необходимо настроить docker-compose.yml
+2) Почему при запуске можно заджавать явно имя хоста:
+   
+        
+        docker-compose build
+        
+        docker-compose up -h <ServerName> <id_container>
+        
+    
+3) --rm нужен чтобы контейнеры не плодились. Т.к. после того как ты остановишь котейнер он остаётся.
+           этот ключ подчищает за собой   
+           
+        
+        docker-compose up --rm -h <ServerName> <id_container>
+        
+4) Обязательно добавить ключ -d для того чтобы запустилось всё в фоне. И была возможность запустить bash                   
+
+        
+        docker-compose up --rm -d -h <ServerName> <id_container>
+        
+        docker-compose up --rm -d <id_container>
+        
+5) Запуск bash внутри контейнера
+
+
+        docker exec -it ad172ba180cc bash          
